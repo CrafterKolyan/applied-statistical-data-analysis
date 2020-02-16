@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Sublime project and workspace
+*.sublime-workspace
+*.sublime-project
