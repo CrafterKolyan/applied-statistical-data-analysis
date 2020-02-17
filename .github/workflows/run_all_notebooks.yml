@@ -1,0 +1,41 @@
+name: "Execute code"
+
+on: push
+
+jobs:
+  execute_all_notebooks:
+    name: "Execute all notebooks"
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout to workspace
+      uses: actions/checkout@v2
+
+    - name: Set bot's name and email
+      run: |
+        git config --global user.name "Github Action"
+        git config --global user.email "action@github.com"
+
+    - name: Install requirements.txt
+      run: |
+        pip3 install -U setuptools
+        pip3 install -r requirements.txt
+
+    - name: Execute all notebooks
+      run: python3 util/run_all_notebooks.py
+
+    - name: Commit changed notebooks
+      if: always()
+      run: |
+        git add *.ipynb && \
+        git commit -m "[Github Action] Execute all notebooks" && \
+        git checkout . && \
+        git pull ${{ github.ref }} --rebase --strategy-option=ours || \
+        true
+
+    - name: Push notebooks
+      if: always()
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        branch: ${{ github.ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}

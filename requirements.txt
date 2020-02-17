@@ -1,0 +1,12 @@
+jupyter
+jupyter_client
+nbconvert
+nbformat
+
+matplotlib
+numpy
+pandas
+scipy
+seaborn
+scikit-learn
+statsmodels
