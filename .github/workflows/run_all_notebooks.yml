@@ -11,6 +11,9 @@ jobs:
     - name: Checkout to workspace
       uses: actions/checkout@v2
 
+    - name: Print all environment variables
+      run: printenv
+
     - name: Set bot's name and email
       run: |
         git config --global user.name "Github Action"
@@ -28,7 +31,9 @@ jobs:
       if: always()
       run: |
         git add *.ipynb && \
-        git commit -m "[Github Action] Execute all notebooks" || \
+        git commit -m "[Github Action] Execute all notebooks" && \
+        git checkout . && \
+        git pull origin ${GITHUB_REF##*/} --rebase --strategy-option=ours || \
         true
 
     - name: Push notebooks
