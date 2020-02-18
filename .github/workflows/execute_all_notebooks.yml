@@ -25,7 +25,7 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Execute all notebooks
-      run: python3 util/run_all_notebooks.py
+      run: util/execute_all_notebooks.py -r
 
     - name: Commit changed notebooks
       if: always()
