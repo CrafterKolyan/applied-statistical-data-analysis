@@ -28,9 +28,7 @@ jobs:
       if: always()
       run: |
         git add *.ipynb && \
-        git commit -m "[Github Action] Execute all notebooks" && \
-        git checkout . && \
-        git pull ${{ github.ref }} --rebase --strategy-option=ours || \
+        git commit -m "[Github Action] Execute all notebooks" || \
         true
 
     - name: Push notebooks
