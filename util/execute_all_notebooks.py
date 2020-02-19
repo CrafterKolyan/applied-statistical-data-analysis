@@ -71,6 +71,6 @@ if __name__ == '__main__':
   parser.add_argument('-r', '--recursive', action='store_true', help='execute notebooks in folders recursively')
   parser.add_argument('-i', '--include-checkpoints', action='store_true', help='execute notebooks from .ipynb_checkpoints folders (--recursive required)')
   parser.add_argument('-t', '--timeout', type=int, default=600, help='cell execution timeout in seconds (default: 600)')
-  parser.add_argument('-k', '--kernel', type=str, default='python3', help="execution kernel (default: 'python3')")
+  parser.add_argument('-k', '--kernel', type=str, default='python3', help='execution kernel (default: "python3")')
   args = parser.parse_args()
   main(args)
