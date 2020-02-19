@@ -21,7 +21,8 @@ def find_all_notebooks(path, recursive=False, include_checkpoints=False):
   ipynb_checkpoints_regex = re.compile(r"\.ipynb_checkpoints")
   notebooks = []
   for address, dirs, files in os.walk(path, topdown=True):
-    dirs[:] = [directory for directory in dirs if include_checkpoints or not ipynb_checkpoints_regex.fullmatch(directory)]
+    if not include_checkpoints:
+      dirs[:] = [directory for directory in dirs if not ipynb_checkpoints_regex.fullmatch(directory)]
     notebooks.extend([os.path.join(address, x) for x in files if ipynb_regex.fullmatch(x)])
   return notebooks
 
