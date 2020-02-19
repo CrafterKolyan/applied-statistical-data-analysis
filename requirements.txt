@@ -6,6 +6,7 @@ nbformat
 matplotlib
 numpy
 pandas
+pingouin
 scipy
 seaborn
 scikit-learn
