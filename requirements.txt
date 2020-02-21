@@ -11,3 +11,4 @@ scipy
 seaborn
 scikit-learn
 statsmodels
+tqdm
