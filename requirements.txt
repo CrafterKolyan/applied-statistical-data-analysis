@@ -3,6 +3,7 @@ jupyter_client
 nbconvert
 nbformat
 
+bootstrapped
 matplotlib
 numpy
 pandas
@@ -12,3 +13,4 @@ seaborn
 scikit-learn
 statsmodels
 tqdm
+xlrd
