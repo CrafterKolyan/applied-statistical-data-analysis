@@ -1,6 +1,6 @@
 # Прикладной статистический анализ данных
 
-[Страница курса](https://github.com/mmp-asda/mmp_asda_spring_2020)
+[Страница курса](https://github.com/mmp-asda/mmp_asda_spring_2020)  
 [Слайды семинаров](http://www.machinelearning.ru/wiki/index.php?title=ПСАД)
 
 | Задание № | Дата | Название | Оценка |
