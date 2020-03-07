@@ -1,6 +1,10 @@
 name: "Execute code"
 
-on: push
+on:
+  push:
+  schedule:
+    # Each day at 4:30
+    - cron:  '30 4 * * *'
 
 jobs:
   execute_all_notebooks:
