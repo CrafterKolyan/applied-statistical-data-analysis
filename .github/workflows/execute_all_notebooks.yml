@@ -29,7 +29,7 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Execute all notebooks
-      run: util/execute_all_notebooks.py -r
+      run: util/execute_all_notebooks.py -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
 
     - name: Commit changed notebooks
       if: always()

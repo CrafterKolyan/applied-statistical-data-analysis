@@ -54,6 +54,7 @@ def main(args):
   notebooks = []
   for folder in args.folder:
     notebooks.extend(find_all_notebooks(folder, recursive=args.recursive, include_checkpoints=args.include_checkpoints))
+  notebooks = [notebook for notebook in notebooks if notebook not in args.exclude]
   execute_preprocessor = ExecutePreprocessor(timeout=args.timeout, kernel_name=args.kernel)
 
   exit_code = 0
@@ -72,5 +73,6 @@ if __name__ == '__main__':
   parser.add_argument('-i', '--include-checkpoints', action='store_true', help='execute notebooks from .ipynb_checkpoints folders (--recursive required)')
   parser.add_argument('-t', '--timeout', type=int, default=600, help='cell execution timeout in seconds (default: 600)')
   parser.add_argument('-k', '--kernel', type=str, default='python3', help='execution kernel (default: "python3")')
+  parser.add_argument('--exclude', type=str, default=[], action='append', help='exclude file from executiting')
   args = parser.parse_args()
   main(args)
