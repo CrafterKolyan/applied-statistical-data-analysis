@@ -82,7 +82,7 @@ jobs:
 
     - name: Compile project
       run: |
-        jupyter nbconvert --to pdf project/solution.ipynb
+        ~/.local/bin/jupyter nbconvert --to pdf project/solution.ipynb
         mv project/solution.pdf project/project_Nikolay_Korolev.pdf
 
     - name: Commit changed project .pdf file
