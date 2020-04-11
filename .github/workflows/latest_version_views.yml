@@ -31,9 +31,9 @@ jobs:
 
     - name: Install requirements.txt
       run: |
-        pip3 install -U setuptools
-        pip3 install -U pip
-        pip3 install -r requirements.txt
+        python -m pip install -U setuptools
+        python -m pip install -U pip
+        python -m pip install -r requirements.txt
 
     - name: Execute all notebooks
       run: python util/execute_all_notebooks.py -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
@@ -72,10 +72,10 @@ jobs:
 
     - name: Install requirements.txt and nbconvert
       run: |
-        export PATH=~/.local/bin/:$PATH
-        pip3 install -U setuptools
-        pip3 install -U pip
-        pip3 install -r requirements.txt
+        export PATH=/home/runner/.local/bin/:$PATH
+        python3 -m pip install -U setuptools
+        python3 -m pip install -U pip
+        python3 -m pip install -r requirements.txt
 
     - name: Install pandoc and texlive
       run: sudo apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-generic-recommended
