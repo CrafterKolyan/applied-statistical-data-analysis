@@ -68,17 +68,18 @@ jobs:
         pip3 install -U setuptools
         pip3 install -r requirements.txt
 
-    - name: Install pandoc
+    - name: Install pandoc and texlive
       run: |
         wget -O $PANDOC_FILENAME $PANDOC_DEB_LINK
         sudo dpkg -i $PANDOC_FILENAME
+        sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-generic-recommended
       env:
         PANDOC_DEB_LINK: https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
-        PANDOC_FILENAME: pandoc-2.9.2.1-1-amd64.deb
+        PANDOC_FILENAME: pandoc.deb
 
     - name: Compile project
       run: |
-        jupyter nbconvert --to pdf project/solution.ipynb
+        python3 -m jupyter nbconvert --to pdf project/solution.ipynb
         mv project/solution.pdf project/project_Nikolay_Korolev.pdf
 
     - name: Commit changed project .pdf file

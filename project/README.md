@@ -16,16 +16,16 @@
 [Исходный код](solution.ipynb)  
 [Решение](project_Nikolay_Korolev.pdf)
 
-## Компиляция
-### Ubuntu
-```
-jupyter nbconvert --to pdf solution.ipynb
-```
-
 ### Результат
 Итоговая оценка: **- / 10**  
 Проверяющий: **-**  
 Комментарий:
 ```
 -
+```
+
+## Компиляция
+### Ubuntu
+```
+jupyter nbconvert --to pdf solution.ipynb
 ```
