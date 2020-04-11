@@ -72,10 +72,10 @@ jobs:
 
     - name: Install requirements.txt and nbconvert
       run: |
+        export PATH=~/.local/bin/:$PATH
         pip3 install -U setuptools
         pip3 install -U pip
         pip3 install -r requirements.txt
-        export  PATH=~/.local/bin/:$PATH
 
     - name: Install pandoc and texlive
       run: sudo apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-generic-recommended
