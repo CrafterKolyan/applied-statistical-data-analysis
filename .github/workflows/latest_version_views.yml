@@ -26,6 +26,7 @@ jobs:
     - name: Install requirements.txt
       run: |
         pip3 install -U setuptools
+        pip3 install -U pip
         pip3 install -r requirements.txt
 
     - name: Execute all notebooks
@@ -66,15 +67,15 @@ jobs:
     - name: Install requirements.txt and nbconvert
       run: |
         pip3 install -U setuptools
+        pip3 install -U pip
         pip3 install -r requirements.txt
-        pip3 install nbconvert
 
     - name: Install pandoc and texlive
       run: sudo apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-generic-recommended
 
     - name: Compile project
       run: |
-        python3 -m jupyter nbconvert --to pdf project/solution.ipynb
+        jupyter nbconvert --to pdf project/solution.ipynb
         mv project/solution.pdf project/project_Nikolay_Korolev.pdf
 
     - name: Commit changed project .pdf file
