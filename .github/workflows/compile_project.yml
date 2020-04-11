@@ -1,0 +1,55 @@
+name: "Compile project"
+
+on:
+  push:
+  schedule:
+    # Each day at 4:30
+    - cron:  '30 4 * * *'
+
+jobs:
+  execute_all_notebooks:
+    name: "Compile project"
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout to workspace
+      uses: actions/checkout@v2
+
+    - name: Print all environment variables
+      run: printenv
+
+    - name: Set bot's name and email
+      run: |
+        git config --global user.name "Github Action"
+        git config --global user.email "action@github.com"
+
+    - name: Install requirements.txt
+      run: |
+        pip3 install -U setuptools
+        pip3 install -r requirements.txt
+
+    - name: Install pandoc
+      run: sudo dpkg -i $PANDOC_DEB_LINK
+      env:
+        PANDOC_DEB_LINK: https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
+
+    - name: Compile project
+      run: |
+        jupyter nbconvert --to pdf project/solution.ipynb
+        mv project/solution.pdf project/project_Nikolay_Korolev.pdf
+
+    - name: Commit changed project .pdf file
+      if: always()
+      run: |
+        git add project/project_Nikolay_Korolev.pdf && \
+        git commit -m "[Github Action] Compile project" && \
+        git checkout . && \
+        git pull origin ${GITHUB_REF##*/} --rebase --strategy-option=ours || \
+        true
+
+    - name: Push commits
+      if: always()
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        branch: ${{ github.ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
