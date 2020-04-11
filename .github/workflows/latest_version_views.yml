@@ -1,4 +1,4 @@
-name: "Compile project"
+name: "Latest version views"
 
 on:
   push:
@@ -8,6 +8,46 @@ on:
 
 jobs:
   execute_all_notebooks:
+    name: "Execute all notebooks"
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout to workspace
+      uses: actions/checkout@v2
+
+    - name: Print all environment variables
+      run: printenv
+
+    - name: Set bot's name and email
+      run: |
+        git config --global user.name "Github Action"
+        git config --global user.email "action@github.com"
+
+    - name: Install requirements.txt
+      run: |
+        pip3 install -U setuptools
+        pip3 install -r requirements.txt
+
+    - name: Execute all notebooks
+      run: util/execute_all_notebooks.py -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
+
+    - name: Commit changed notebooks
+      if: always()
+      run: |
+        git add *.ipynb && \
+        git commit -m "[Github Action] Execute all notebooks" && \
+        git checkout . && \
+        git pull origin ${GITHUB_REF##*/} --rebase --strategy-option=ours || \
+        true
+
+    - name: Push notebooks
+      if: always()
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        branch: ${{ github.ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  compile_project:
     name: "Compile project"
     runs-on: ubuntu-latest
     
@@ -29,9 +69,12 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Install pandoc
-      run: sudo dpkg -i $PANDOC_DEB_LINK
+      run: |
+        wget -o $PANDOC_FILENAME $PANDOC_DEB_LINK
+        sudo dpkg -i $PANDOC_FILENAME
       env:
         PANDOC_DEB_LINK: https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
+        PANDOC_FILENAME: pandoc.deb
 
     - name: Compile project
       run: |
