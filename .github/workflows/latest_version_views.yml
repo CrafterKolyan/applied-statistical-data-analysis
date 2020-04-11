@@ -70,11 +70,11 @@ jobs:
 
     - name: Install pandoc
       run: |
-        wget -o $PANDOC_FILENAME $PANDOC_DEB_LINK
+        wget -O $PANDOC_FILENAME $PANDOC_DEB_LINK
         sudo dpkg -i $PANDOC_FILENAME
       env:
         PANDOC_DEB_LINK: https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
-        PANDOC_FILENAME: pandoc.deb
+        PANDOC_FILENAME: pandoc-2.9.2.1-1-amd64.deb
 
     - name: Compile project
       run: |
