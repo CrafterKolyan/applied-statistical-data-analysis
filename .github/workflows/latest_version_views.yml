@@ -69,13 +69,7 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Install pandoc and texlive
-      run: |
-        wget -O $PANDOC_FILENAME $PANDOC_DEB_LINK
-        sudo dpkg -i $PANDOC_FILENAME
-        sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-generic-recommended
-      env:
-        PANDOC_DEB_LINK: https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
-        PANDOC_FILENAME: pandoc.deb
+      run: sudo apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-generic-recommended
 
     - name: Compile project
       run: |
