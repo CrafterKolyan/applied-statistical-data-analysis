@@ -36,7 +36,7 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Execute all notebooks
-      run: util/execute_all_notebooks.py -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
+      run: python util/execute_all_notebooks.py -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
 
     - name: Commit changed notebooks
       if: always()
@@ -75,6 +75,7 @@ jobs:
         pip3 install -U setuptools
         pip3 install -U pip
         pip3 install -r requirements.txt
+        export  PATH=~/.local/bin/:$PATH
 
     - name: Install pandoc and texlive
       run: sudo apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-generic-recommended
