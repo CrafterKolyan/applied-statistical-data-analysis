@@ -22,9 +22,3 @@
 ```
 -
 ```
-
-## Компиляция
-### Ubuntu
-```
-jupyter nbconvert --to pdf solution.ipynb
-```
