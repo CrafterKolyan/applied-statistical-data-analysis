@@ -8,6 +8,7 @@ matplotlib
 numpy
 pandas
 pingouin
+pmdarima
 scipy
 seaborn
 scikit-learn
