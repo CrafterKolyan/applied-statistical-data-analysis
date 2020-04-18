@@ -68,7 +68,7 @@ def main(args):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Execute all notebooks in folder')
-  parser.add_argument('folder', type=str, nargs='*', default=['.'], help='folder with notebooks (default: directory where script is executed)')
+  parser.add_argument('folder', type=str, nargs='+', help='folder with notebooks (default: directory where script is executed)')
   parser.add_argument('-r', '--recursive', action='store_true', help='execute notebooks in folders recursively')
   parser.add_argument('-i', '--include-checkpoints', action='store_true', help='execute notebooks from .ipynb_checkpoints folders (--recursive required)')
   parser.add_argument('-t', '--timeout', type=int, default=600, help='cell execution timeout in seconds (default: 600)')
