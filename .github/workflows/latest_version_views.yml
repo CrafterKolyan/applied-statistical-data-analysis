@@ -36,7 +36,7 @@ jobs:
         python -m pip install -r requirements.txt
 
     - name: Execute all notebooks
-      run: python util/execute_all_notebooks.py . -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb --exclude ./project/project_Nikolay_Korolev.ipynb
+      run: python util/execute_all_notebooks.py . -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
 
     - name: Commit changed notebooks
       if: always()
