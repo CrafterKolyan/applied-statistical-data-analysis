@@ -1,6 +1,6 @@
 # Прикладной статистический анализ данных
 
-![Latest version views](https://github.com/CrafterKolyan/applied-statistical-data-analysis/workflows/Latest%20version%20views/badge.svg)
+[![Latest version views](https://github.com/CrafterKolyan/applied-statistical-data-analysis/workflows/Latest%20version%20views/badge.svg)](https://github.com/CrafterKolyan/applied-statistical-data-analysis/actions?query=workflow%3A%22Latest+version+views%22)
 
 [Страница курса](https://github.com/mmp-asda/mmp_asda_spring_2020)  
 [Слайды семинаров](http://www.machinelearning.ru/wiki/index.php?title=ПСАД)
