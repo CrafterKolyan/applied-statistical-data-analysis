@@ -3,8 +3,8 @@ name: "Latest version views"
 on:
   push:
   schedule:
-    # Each day at 4:30
-    - cron:  '30 4 * * *'
+    # 1st and 15th days of each month at 4:30
+    - cron:  '30 4 1,15 * *'
 
 jobs:
   execute_all_notebooks:
