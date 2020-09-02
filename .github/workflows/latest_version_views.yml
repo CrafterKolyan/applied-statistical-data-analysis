@@ -18,7 +18,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.7'
+        python-version: '3.8'
         architecture: 'x64'
 
     - name: Print all environment variables
@@ -36,7 +36,7 @@ jobs:
         python -m pip install -r requirements.txt
 
     - name: Execute all notebooks
-      run: python util/execute_all_notebooks.py . -r --exclude ./task3/Task3_Nikolay_Korolev.ipynb
+      run: python util/execute_all_notebooks.py . -r
 
     - name: Commit changed notebooks
       if: always()
