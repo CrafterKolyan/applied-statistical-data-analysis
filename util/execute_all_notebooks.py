@@ -31,18 +31,18 @@ def run_notebook(path, preprocessor):
   print(f"Executing {path}", end="")
   result = True
   with open(path, 'r', encoding='utf-8') as notebook_file:
-    notebook = nbformat.read(notebook_file, as_version=nbformat.NO_CONVERT)
+    notebook = nbformat.read(notebook_file, as_version=nbformat.current_nbformat)
 
-  initial_notebook = copy.deepcopy(notebook)
+  initial_notebook_cells = copy.deepcopy(notebook['cells'])
 
   try:
     preprocessor.preprocess(notebook, {'metadata': {'path': os.path.dirname(path)}})
   except CellExecutionError as e:
     result = False
-    print(" FAIL!", " CHANGED!" if notebook != initial_notebook else "", sep="")
+    print(" FAIL!", " CHANGED!" if notebook['cells'] != initial_notebook_cells else "", sep="")
     print(e)
   else:
-    print(" OK!", " CHANGED!" if notebook != initial_notebook else "", sep="")
+    print(" OK!", " CHANGED!" if notebook['cells'] != initial_notebook_cells else "", sep="")
   sys.stdout.flush()
 
   with open(path, 'w', encoding='utf-8') as notebook_file:
@@ -73,6 +73,6 @@ if __name__ == '__main__':
   parser.add_argument('-i', '--include-checkpoints', action='store_true', help='execute notebooks from .ipynb_checkpoints folders (--recursive required)')
   parser.add_argument('-t', '--timeout', type=int, default=600, help='cell execution timeout in seconds (default: 600)')
   parser.add_argument('-k', '--kernel', type=str, default='python3', help='execution kernel (default: "python3")')
-  parser.add_argument('--exclude', type=str, default=[], action='append', help='exclude file from executiting')
+  parser.add_argument('--exclude', type=str, default=[], action='append', help='exclude file from executing')
   args = parser.parse_args()
   main(args)
