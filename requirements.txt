@@ -1,6 +1,6 @@
 jupyter
 jupyter_client
-nbconvert==5.5.0
+nbconvert
 nbformat
 
 bootstrapped
