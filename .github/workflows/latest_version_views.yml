@@ -5,6 +5,7 @@ on:
   schedule:
     # 1st and 15th days of each month at 4:30
     - cron:  '30 4 1,15 * *'
+  workflow_dispatch:
 
 jobs:
   execute_all_notebooks:
