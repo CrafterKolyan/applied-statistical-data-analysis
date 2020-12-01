@@ -27,6 +27,12 @@ def find_all_notebooks(path, recursive=False, include_checkpoints=False):
   return notebooks
 
 
+def delete_execution_metadata(notebook):
+  for cell in notebook.cells:
+    if cell.cell_type == 'code':
+      cell.metadata.execution = []
+
+
 def run_notebook(path, preprocessor):
   print(f"Executing {path}", end="")
   result = True
@@ -44,6 +50,7 @@ def run_notebook(path, preprocessor):
   else:
     print(" OK!", " CHANGED!" if notebook['cells'] != initial_notebook_cells else "", sep="")
   sys.stdout.flush()
+  delete_execution_metadata(notebook)
 
   with open(path, 'w', encoding='utf-8') as notebook_file:
     nbformat.write(notebook, notebook_file)
