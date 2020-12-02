@@ -11,6 +11,14 @@ from nbconvert.preprocessors.execute import CellExecutionError
 
 import argparse
 
+import asyncio
+import sys
+
+
+def patch_windows_asyncio():
+  if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 
 def find_all_notebooks(path, recursive=False, include_checkpoints=False):
   ipynb_regex = re.compile(r"^.*\.ipynb$")
@@ -30,7 +38,7 @@ def find_all_notebooks(path, recursive=False, include_checkpoints=False):
 def delete_execution_metadata(notebook):
   for cell in notebook.cells:
     if cell.cell_type == 'code':
-      cell.metadata.execution = []
+      cell.metadata.execution = dict()
 
 
 def run_notebook(path, preprocessor):
@@ -74,6 +82,7 @@ def main(args):
 
 
 if __name__ == '__main__':
+  patch_windows_asyncio()
   parser = argparse.ArgumentParser(description='Execute all notebooks in folder')
   parser.add_argument('folder', type=str, nargs='+', help='folder with notebooks (default: directory where script is executed)')
   parser.add_argument('-r', '--recursive', action='store_true', help='execute notebooks in folders recursively')
