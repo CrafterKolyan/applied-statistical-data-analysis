@@ -30,7 +30,7 @@ def find_all_notebooks(path, recursive=False, include_checkpoints=False):
 def delete_execution_metadata(notebook):
   for cell in notebook.cells:
     if cell.cell_type == 'code':
-      cell.metadata.execution = []
+      del cell.metadata['execution']
 
 
 def run_notebook(path, preprocessor):
