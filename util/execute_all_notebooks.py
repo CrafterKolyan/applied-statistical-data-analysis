@@ -38,7 +38,7 @@ def run_notebook(path, preprocessor):
   result = True
   with open(path, 'r', encoding='utf-8') as notebook_file:
     notebook = nbformat.read(notebook_file, as_version=nbformat.current_nbformat)
-
+  delete_execution_metadata(notebook)
   initial_notebook_cells = copy.deepcopy(notebook['cells'])
 
   try:
