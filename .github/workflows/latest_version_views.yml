@@ -10,7 +10,7 @@ on:
 jobs:
   execute_all_notebooks:
     name: "Execute all notebooks"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     
     steps:
     - name: Checkout to workspace
