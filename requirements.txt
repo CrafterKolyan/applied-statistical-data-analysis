@@ -6,6 +6,7 @@ nbformat
 bootstrapped
 matplotlib
 numpy
+openpyxl
 pandas
 pingouin
 pmdarima
@@ -14,4 +15,3 @@ seaborn
 scikit-learn
 statsmodels
 tqdm
-xlrd
