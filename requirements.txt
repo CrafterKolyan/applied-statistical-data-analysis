@@ -8,7 +8,7 @@ matplotlib
 numpy
 openpyxl
 pandas
-pingouin
+pingouin<0.4.0
 pmdarima
 scipy
 seaborn
