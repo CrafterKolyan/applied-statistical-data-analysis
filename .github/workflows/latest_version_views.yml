@@ -6,6 +6,11 @@ on:
     # 1st and 15th days of each month at 4:30
     - cron:  '30 4 1,15 * *'
   workflow_dispatch:
+    inputs:
+      pythonVersion:
+        description: 'Python version'
+        required: true
+        default: '3.x'
 
 jobs:
   execute_all_notebooks:
@@ -19,7 +24,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: ${{ github.event.inputs.pythonVersion }}
         architecture: 'x64'
 
     - name: Print all environment variables
