@@ -20,12 +20,20 @@ jobs:
     steps:
     - name: Checkout to workspace
       uses: actions/checkout@v2
+      
+    - name: Setup Python for workflow dispatch
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+      if: github.event_name != 'workflow_dispatch'
 
-    - name: Setup Python
+    - name: Setup Python for workflow dispatch
       uses: actions/setup-python@v2
       with:
         python-version: ${{ github.event.inputs.pythonVersion }}
         architecture: 'x64'
+      if: github.event_name == 'workflow_dispatch'
 
     - name: Print all environment variables
       run: printenv
