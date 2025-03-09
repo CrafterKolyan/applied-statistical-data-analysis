@@ -10,17 +10,18 @@ on:
       pythonVersion:
         description: 'Python version'
         required: true
-        default: '3.x'
+        # While pmdarima doesn't support numpy 2.0 this can't go to Python 3.13
+        default: '3.12'
 
 jobs:
   execute_all_notebooks:
     name: "Execute all notebooks"
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout to workspace
       uses: actions/checkout@v4
-      
+
     - name: Setup Python in general case
       uses: actions/setup-python@v4
       with:
