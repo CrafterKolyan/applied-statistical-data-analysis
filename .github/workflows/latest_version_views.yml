@@ -10,7 +10,6 @@ on:
       pythonVersion:
         description: 'Python version'
         required: true
-        # While pmdarima doesn't support numpy 2.0 this can't go to Python 3.13
         default: '3.13'
 
 jobs:
@@ -22,19 +21,11 @@ jobs:
     - name: Checkout to workspace
       uses: actions/checkout@v6
 
-    - name: Setup Python in general case
+    - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: '3.13'
+        python-version: ${{ github.event.inputs.pythonVersion != '' && github.event.inputs.pythonVersion || '3.13' }}
         architecture: 'x64'
-      if: github.event_name != 'workflow_dispatch'
-
-    - name: Setup Python for workflow dispatch
-      uses: actions/setup-python@v6
-      with:
-        python-version: ${{ github.event.inputs.pythonVersion }}
-        architecture: 'x64'
-      if: github.event_name == 'workflow_dispatch'
 
     - name: Print all environment variables
       run: printenv
