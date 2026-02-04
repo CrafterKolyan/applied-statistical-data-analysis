@@ -20,17 +20,17 @@ jobs:
 
     steps:
     - name: Checkout to workspace
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup Python in general case
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.13'
         architecture: 'x64'
       if: github.event_name != 'workflow_dispatch'
 
     - name: Setup Python for workflow dispatch
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ github.event.inputs.pythonVersion }}
         architecture: 'x64'
@@ -64,7 +64,7 @@ jobs:
 
     - name: Push notebooks
       if: always()
-      uses: ad-m/github-push-action@v0.8.0
+      uses: ad-m/github-push-action@v1.0.0
       with:
         branch: ${{ github.ref }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
