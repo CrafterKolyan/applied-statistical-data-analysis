@@ -24,7 +24,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ github.event.inputs.pythonVersion != '' && github.event.inputs.pythonVersion || '3.13' }}
+        python-version: ${{ inputs.pythonVersion != '' && inputs.pythonVersion || '3.13' }}
         architecture: 'x64'
 
     - name: Print all environment variables
