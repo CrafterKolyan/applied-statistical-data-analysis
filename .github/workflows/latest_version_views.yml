@@ -11,7 +11,7 @@ on:
         description: 'Python version'
         required: true
         # While pmdarima doesn't support numpy 2.0 this can't go to Python 3.13
-        default: '3.12'
+        default: '3.13'
 
 jobs:
   execute_all_notebooks:
