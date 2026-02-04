@@ -26,6 +26,7 @@ jobs:
       with:
         python-version: ${{ inputs.pythonVersion != '' && inputs.pythonVersion || '3.13' }}
         architecture: 'x64'
+        cache: 'pip'
 
     - name: Print all environment variables
       run: printenv
