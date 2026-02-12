@@ -40,7 +40,7 @@ jobs:
       run: |
         python -m pip install -U setuptools
         python -m pip install -U pip
-        python -m pip install -r requirements.txt
+        python -m pip install . 
 
     - name: Execute all notebooks
       run: python util/execute_all_notebooks.py . -r
